@@ -21,6 +21,7 @@ public class MobileMoney {
         System.out.println("You have received UGX " + amount + "from " + senderName + ". Your new account balance is " + balance);
     }
 
+
     public static void main (String[] args) {
         MobileMoney account = new MobileMoney();
 
