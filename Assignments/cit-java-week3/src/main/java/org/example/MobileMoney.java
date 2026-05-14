@@ -7,7 +7,7 @@ public class MobileMoney {
     String phoneNumber;
     int pin;
 
-    void sendMoney(String senderName, String receiverName, double amount) {
+    public void sendMoney(String senderName, String receiverName, double amount) {
         if (amount < balance) {
             System.out.println("You have insufficient funds to complete this transaction. Borrow by dailing *185#");
         } else if (amount > balance) {
@@ -22,7 +22,7 @@ public class MobileMoney {
     }
 
 
-    public static void main (String[] args) {
+    /*public static void main (String[] args) {
         MobileMoney account = new MobileMoney();
 
         account.senderName = "Alvin David";
@@ -33,5 +33,6 @@ public class MobileMoney {
 
         account.sendMoney("Alvin David", "Drena Jenifer", 20000);
         account.receiveMoney("Drena Jennifer", "Alvin David", 1100);
-    }
+    } */
 }
+

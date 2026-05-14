@@ -1,12 +1,15 @@
 package org.example;
 
 public class Product {
-    String name;
-    double price;
-    int stockQuantity;
-    String category;
+    private String name;
+    private double price;
+    private int stockQuantity;
+    private String category;
 
     //Product constructor
+    public Product() {
+
+    }
     public Product(String name, double price, int stockQuantity, String category) {
         this.name = name;
         this.price = price;
@@ -15,8 +18,13 @@ public class Product {
     }
     //display info method
     void displayInfo() {
-        System.out.println("Product: " + name + " | Price: UGX " + price + " | Stock: " + stockQuantity + " | Category: " + category);
+        String message = "Product: " + name  + "\n | Price: UGX " + price + "\n | Stock: " + stockQuantity + "\n | Category: " + category;
+        displayInfo(message);
     }
+    void displayInfo(String message) {
+        System.out.println(message);
+    }
+
 
     //restock method
     void restock(int units) {
@@ -24,12 +32,16 @@ public class Product {
         System.out.println("Restocked " + name + " by " + units + " units " + "New stack: " + stockQuantity);
     }
 
+
     //isInstock method
     boolean isInStock() {
         return  stockQuantity > 0;
     }
+    public String getStatus() {
+        return "The class is active";
+    }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Product p1 = new Product("Laptop", 100000.0, 100, "Electronics");
         Product p2 = new Product("Shirt", 20000.0, 100, "Clothing");
 
@@ -42,5 +54,10 @@ public class Product {
         p2.restock(10);
         System.out.println("Instock: " + p2.isInStock());
         System.out.println();
+    } */
+    public String getName() {
+        return name;
     }
+
 }
+
