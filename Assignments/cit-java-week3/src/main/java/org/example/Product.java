@@ -1,63 +1,53 @@
 package org.example;
 
 public class Product {
-    private String name;
-    private double price;
-    private int stockQuantity;
-    private String category;
+    String name;
+    double price;
+    int stockQuantity;
+    String category;
 
-    //Product constructor
-    public Product() {
-
-    }
     public Product(String name, double price, int stockQuantity, String category) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.category = category;
     }
-    //display info method
+
+    Product(String name, double price) {
+        this(name, 0,0, "Save");
+    }
+
     void displayInfo() {
-        String message = "Product: " + name  + "\n | Price: UGX " + price + "\n | Stock: " + stockQuantity + "\n | Category: " + category;
-        displayInfo(message);
-    }
-    void displayInfo(String message) {
-        System.out.println(message);
+        System.out.println("Name: " + name + "Price: " + price + "Stock Quantity: " + stockQuantity + "Category: " + category);
     }
 
-
-    //restock method
     void restock(int units) {
         stockQuantity += units;
-        System.out.println("Restocked " + name + " by " + units + " units " + "New stack: " + stockQuantity);
+        System.out.println("Stock Quantity: " + stockQuantity);
     }
 
-
-    //isInstock method
-    boolean isInStock() {
-        return  stockQuantity > 0;
-    }
-    public String getStatus() {
-        return "The class is active";
+     boolean isInStock() {
+        return stockQuantity > 0;
     }
 
-    /*public static void main(String[] args) {
-        Product p1 = new Product("Laptop", 100000.0, 100, "Electronics");
-        Product p2 = new Product("Shirt", 20000.0, 100, "Clothing");
+    public static void main(String[] args) {
+        Product product1 = new Product("Juice", 23000, 34, "Beverages");
+        Product product2 = new Product("Samz", 2000, 500, "Biscuits");
+        Product product3 = new Product("Apple", 1500, 400, "Fruits");
+        Product product4 = new Product("Teju", 0);
 
-        p1.displayInfo();
-        p1.restock(5);
-        System.out.println("InStock: " + p1.isInStock());
-        System.out.println();
+        product1.displayInfo();
+        product2.displayInfo();
+        product3.displayInfo();
+        product4.displayInfo();
 
-        p2.displayInfo();
-        p2.restock(10);
-        System.out.println("Instock: " + p2.isInStock());
-        System.out.println();
-    } */
-    public String getName() {
-        return name;
+        product1.restock(5);
+        product2.restock(5);
+        product3.restock(5);
+        product4.restock(20);
+
+        System.out.println("In Stock: " + product1.isInStock());
+        System.out.println("In Stock: " + product2.isInStock());
+        System.out.println("In Stock: " + product3.isInStock());
     }
-
 }
-

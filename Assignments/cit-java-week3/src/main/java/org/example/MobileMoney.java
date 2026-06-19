@@ -1,38 +1,92 @@
 package org.example;
 
 public class MobileMoney {
-    String senderName;
-    String receiverName;
-    double balance;
-    String phoneNumber;
-    int pin;
+    private String phoneNumber;
+    private String ownerName;
+    private double balance;
+    private int failedPinAttempts;
+    private boolean isLocked;
 
-    public void sendMoney(String senderName, String receiverName, double amount) {
-        if (amount < balance) {
-            System.out.println("You have insufficient funds to complete this transaction. Borrow by dailing *185#");
-        } else if (amount > balance) {
-            balance = balance - amount;
-            System.out.println("You have successfully sent UGX " + amount + " to " + receiverName + ". Your new balance is UGX" + balance);
+    public MobileMoney(String phoneNumber, String ownerName, double balance, int failedPinAttempts, boolean isLocked) {
+        this.phoneNumber = phoneNumber;
+        this.ownerName = ownerName;
+        this.balance = balance;
+        this.failedPinAttempts = failedPinAttempts;
+        this.isLocked = isLocked;
+    }
+
+    //phone number getter
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    //owner name getter
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    //balance getter
+    public double getBalance() {
+        return balance;
+    }
+
+    //failed pin attempts getter
+    public int getFailedPinAttempts() {
+        return failedPinAttempts;
+    }
+
+    //is locked getter
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    //owner Name setter
+    public void setOwnerName(String ownerName) {
+        if (ownerName == null || ownerName.length() == 0) {
+            System.out.println("owner name is null");
+        } else {
+            this.ownerName = ownerName;
         }
     }
 
-    void receiveMoney(String senderName, String receiverName, double amount) {
-        balance = balance + amount;
-        System.out.println("You have received UGX " + amount + "from " + senderName + ". Your new account balance is " + balance);
+    public void receiveMoney(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("You have received amount " + amount + " and you new balance is " + balance);
+        } else {
+            System.out.println("Amount must be positive");
+        }
     }
 
+    public void sendMoney(double amount) {
+        if (!isLocked &&  amount > 0 && balance >= amount) {
+                balance -= amount;
+                System.out.println("You have successfully sent UGX: " + amount);
+        }
 
-    /*public static void main (String[] args) {
-        MobileMoney account = new MobileMoney();
+        if (isLocked) {
+            System.out.println("Account is locked");
+            return;
+        }
+    }
 
-        account.senderName = "Alvin David";
-        account.receiverName = "Tagoole David";
-        account.balance = 80000;
-        account.phoneNumber = "0758862363";
-        account.pin = 5555;
+    public void recordFailedAttempts() {
+        failedPinAttempts++;
 
-        account.sendMoney("Alvin David", "Drena Jenifer", 20000);
-        account.receiveMoney("Drena Jennifer", "Alvin David", 1100);
-    } */
+        if (failedPinAttempts >= 3) {
+            isLocked = true;
+        System.out.println("Account is locked");
+        }
+    }
+
+    public static void main(String[] args) {
+        MobileMoney mtn = new MobileMoney("0758862363", "Waluube Alvin David", 100000, 2, false);
+
+        mtn.recordFailedAttempts();
+
+        System.out.println(mtn.isLocked());
+
+        mtn.setOwnerName("Naikooba Drena");
+        System.out.println(mtn.getOwnerName());
+    }
 }
-

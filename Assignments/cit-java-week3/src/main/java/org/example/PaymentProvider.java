@@ -143,7 +143,7 @@ class MTNMobileMoney extends PaymentProvider {
     }
 }
 
-class Main {
+class Mainly {
     public static void main(String[] args) {
         ArrayList<PaymentProvider> providers = new ArrayList<>();
 
