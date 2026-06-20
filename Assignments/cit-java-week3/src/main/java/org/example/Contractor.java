@@ -1,11 +1,11 @@
 package org.example;
 
-public class Contractor extends Employee {
+public class Contractor  {
     private double hourlyRate;
     private int hoursWorked;
 
-    public Contractor(String employeeId, String fullName, String department, double hourlyRate, int hoursWorked) {
-        super(employeeId, fullName, department);
+    public Contractor( double hourlyRate, int hoursWorked) {
+
         this.hourlyRate = hourlyRate;
         this.hoursWorked = hoursWorked;
     }
@@ -14,8 +14,5 @@ public class Contractor extends Employee {
         this.hoursWorked += hours;
     }
 
-    @Override
-    public double calculatePay() {
-        return hourlyRate * hoursWorked;
-    }
+
 }
